@@ -1,13 +1,7 @@
-'use strict';
-
 console.log('App.js tá executando!');
 
 // JSX - JavaScript XML
-var template = React.createElement(
-  'h1',
-  null,
-  'Indecis\xE3o App'
-);
+var template = <h1>Indecisão App</h1>;
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);

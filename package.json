@@ -1,0 +1,29 @@
+{
+  "name": "react-indecision-app",
+  "version": "1.0.0",
+  "description": "Aplicação simples React",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d public/scripts --watch"
+  },
+  "repository": "git+https://github.com/rfontoura/react-indecision-app.git",
+  "keywords": [
+    "react",
+    "simple",
+    "app",
+    "git"
+  ],
+  "author": "Rafael Fontoura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfontoura/react-indecision-app/issues"
+  },
+  "homepage": "https://github.com/rfontoura/react-indecision-app#readme"
+}
