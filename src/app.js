@@ -1,23 +1,27 @@
 console.log('App.js tá executando!');
 
 var user = {
-    name: 'Rafaelo',
-    age: 135,
-    location: 'GYN'
+    name: 'Chaves do Oito',
+    age: 12,
+    location: 'Vila, México'
 };
 
 var app = {
-    title: 'Minha Grandissíssima Aplicação',
+    title: 'Minha Grandissíssima Aplicaçãoadsf',
     subtitle: 'Como fazer uma aplicação Hello World perfeita',
-    tags: ['shit', 'simple', 'mastering']
+    tags: ['shit', 'simpled', 'mastering']
 };
+
+function getLocation(location) {
+    return location ? location : '(desconhecida)';
+}
 
 // JSX - JavaScript XML
 var template2 = (
     <div>
-        <h1>{app.title}</h1>
-        <p>App, what for is it?: {app.subtitle}</p>
-        <p>Tags: {app.tags[0]}, {app.tags[1]}, {app.tags[2]}</p>
+        <h1>{user.name}</h1>
+        <p>Idade: {user.age} anos</p>
+        <p>Localização: {getLocation(user.location)}</p>
     </div>
 );
 
