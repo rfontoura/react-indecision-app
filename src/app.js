@@ -1,12 +1,12 @@
 console.log('App.js tá executando!');
 
-var user = {
+const user = {
     /*name: 'Chaves do Oito',*/
     age: 18,
     location: 'Vila, México'
 };
 
-var app = {
+const app = {
     title: 'Minha Grandissíssima Aplicação',
     subtitle: 'Como fazer uma aplicação Hello World',
     options: ['Um', 'Dois', 'Três', 'Quatro']
@@ -21,8 +21,8 @@ function getLocation(location) {
 }
 
 function getOptions(optionsArray) {
-    var itens = [];
-    for (var opcao in optionsArray) {
+    const itens = [];
+    for (let opcao in optionsArray) {
         itens.push(<li>{optionsArray[opcao]}</li>);
     }
 
@@ -30,7 +30,7 @@ function getOptions(optionsArray) {
 }
 
 // JSX - JavaScript XML
-var template2 = (
+const template2 = (
     <div>
         <h1>{user.name ? user.name : 'Anônimo'}</h1>
         {user.age >= 18 && <p>Idade: {user.age} anos</p>}
@@ -38,7 +38,7 @@ var template2 = (
     </div>
 );
 
-var template3 = (
+const template3 = (
     <div>
         <h1>{app.title}</h1>
         {app.subtitle && <h2>{app.subtitle}</h2>}
@@ -47,5 +47,5 @@ var template3 = (
     </div>
 );
 
-var domElement = document.getElementById('app');
+const domElement = document.getElementById('app');
 ReactDOM.render(template3, domElement);
