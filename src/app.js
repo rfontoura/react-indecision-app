@@ -1,24 +1,10 @@
 console.log('App.js tá executando!');
 
-const user = {
-    /*name: 'Chaves do Oito',*/
-    age: 18,
-    location: 'Vila, México'
-};
-
 const app = {
     title: 'Minha Grandissíssima Aplicação',
     subtitle: 'Como fazer uma aplicação Hello World',
     options: ['Um', 'Dois', 'Três', 'Quatro']
 };
-
-function getLocation(location) {
-    if (location) {
-        return <p>Localização: {location}</p>
-    }
-
-    return undefined;
-}
 
 function getOptions(optionsArray) {
     const itens = [];
@@ -30,15 +16,7 @@ function getOptions(optionsArray) {
 }
 
 // JSX - JavaScript XML
-const template2 = (
-    <div>
-        <h1>{user.name ? user.name : 'Anônimo'}</h1>
-        {user.age >= 18 && <p>Idade: {user.age} anos</p>}
-        {getLocation(user.location)}
-    </div>
-);
-
-const template3 = (
+const template = (
     <div>
         <h1>{app.title}</h1>
         {app.subtitle && <h2>{app.subtitle}</h2>}
@@ -47,5 +25,13 @@ const template3 = (
     </div>
 );
 
+let count = 5;
+const template2 = (
+    <div>
+        <h1>Count: {count}</h1>
+        <button id="meu-id" className="button">+1</button>
+    </div>
+);
+
 const domElement = document.getElementById('app');
-ReactDOM.render(template3, domElement);
+ReactDOM.render(template2, domElement);
