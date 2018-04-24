@@ -6,15 +6,6 @@ const app = {
     options: []
 };
 
-function getOptions(optionsArray) {
-    const itens = [];
-    for (let opcao in optionsArray) {
-        itens.push(<li>{optionsArray[opcao]}</li>);
-    }
-
-    return <ul>{itens}</ul>;
-}
-
 const onSubmitForm = (e) => {
     e.preventDefault();
 
@@ -33,6 +24,17 @@ const removeAll = () => {
 
 const domElement = document.getElementById('app');
 
+function getOptionsList() {
+    if (app.options.length > 0) {
+        const optionsLi = app.options.map((numero, indice) => {
+            return <li key={indice}>{numero}</li>;
+        });
+        return <ol>{optionsLi}</ol>;
+    }
+
+    return '';
+}
+
 // {app.options.length > 0 && getOptions(app.options)}
 
 const renderTemplate = () => {
@@ -42,12 +44,12 @@ const renderTemplate = () => {
             <h1>{app.title}</h1>
             {app.subtitle && <h2>{app.subtitle}</h2>}
             <p>{!app.options || app.options.length === 0 ? 'No options' : 'Here are your options:'}</p>
-            {app.options.length > 0 && getOptions(app.options)}
+            {getOptionsList()}
 
+            <p><button onClick={removeAll}>Remove All</button></p>            
             <form onSubmit={onSubmitForm}>
                 <input type="text" name="option" />
                 <button>Add Option</button>
-                <button onClick={removeAll}>Remove All</button>
             </form>
         </div>
     );
