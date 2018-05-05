@@ -35,7 +35,11 @@ function getOptionsList() {
     return '';
 }
 
-// {app.options.length > 0 && getOptions(app.options)}
+const whatToDo = () => {
+    const optionIndex = Math.floor(Math.random() * app.options.length);
+    const option = app.options[optionIndex];
+    alert(option);
+};
 
 const renderTemplate = () => {
     // JSX - JavaScript XML
@@ -46,7 +50,8 @@ const renderTemplate = () => {
             <p>{!app.options || app.options.length === 0 ? 'No options' : 'Here are your options:'}</p>
             {getOptionsList()}
 
-            <p><button onClick={removeAll}>Remove All</button></p>            
+            <button onClick={removeAll}>Remove All</button>
+            <button disabled={app.options.length === 0} onClick={whatToDo}>What should I do?</button>
             <form onSubmit={onSubmitForm}>
                 <input type="text" name="option" />
                 <button>Add Option</button>
