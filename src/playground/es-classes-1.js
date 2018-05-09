@@ -1,22 +1,55 @@
 class Pessoa {
-    constructor(nome = '(sem nome)', idade = 0) {
+    constructor(nome = 'Anônimo', idade = 0) {
         this.nome = nome;
         this.idade = idade;
     }
 
     getSaudacao() {
-        return `Olá, meu povo! Meu nome bobo é ${this.nome}!`;
+        return `Olá, meu povo! Meu nome bobo é ${this.nome} e tenho ${this.idade} anos!`;
     }
 
     getDescricao() {
-        return `${this.nome} tem ${this.idade} ano(s).`;
+        return `Meu nome é ${this.nome} e tenho ${this.idade} ano(s).`;
     }
 }
 
-const eu = new Pessoa();
-console.log(eu.getSaudacao());
-console.log(eu.getDescricao());
+class Estudante extends Pessoa {
+    constructor(nome, idade, curso) {
+        super(nome, idade);
+        this.curso = curso;
+    }
 
-const tiao = new Pessoa('Tião Galinha', 98);
+    possuiCurso() {
+        return !!this.curso;
+    }
+
+    getDescricao() {
+        let descricao = super.getDescricao();
+        if (this.possuiCurso()) {
+            descricao += ` Faço o curso ${this.curso}.`
+        }
+
+        return descricao;
+    }
+}
+
+class Viajante extends Pessoa {
+    constructor(nome, idade, cidadeNatal) {
+        super(nome, idade);
+        this.cidadeNatal = cidadeNatal;
+    }
+
+    getSaudacao() {
+        let saudacao = super.getSaudacao();
+        if (this.cidadeNatal) {
+            saudacao += ` Falo de ${this.cidadeNatal}.`;
+        }
+        return saudacao;
+    }
+}
+
+const eu = new Viajante();
+console.log(eu.getSaudacao());
+
+const tiao = new Viajante('Jaiminho, o Carteiro', 55, 'Tangamandápio');
 console.log(tiao.getSaudacao());
-console.log(tiao.getDescricao());
