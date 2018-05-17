@@ -28,10 +28,15 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+
+    executarAcao() {
+        alert('O que devo fazer?');
+    }
+
     render() {
         return (
             <div>
-                <button>O que devo fazer?</button>
+                <button onClick={this.executarAcao}>O que devo fazer?</button>
             </div>
         );
     }
@@ -44,6 +49,10 @@ class Option extends React.Component {
 }
 
 class Options extends React.Component {
+    removerOpcoes() {
+        alert('Remover opções');
+    }
+
     render() {
 
         let opcoes;
@@ -52,24 +61,37 @@ class Options extends React.Component {
         }
 
         return (
-            <ol>
-                {
-                    this.props.values.map((valor, indice) => {
-                        return <Option key={indice} value={valor} />;
-                    })
-                }
-            </ol>
+            <div>
+                <button onClick={this.removerOpcoes}>Remover todos</button>
+                <ol>
+                    {
+                        this.props.values.map((valor, indice) => {
+                            return <Option key={indice} value={valor} />;
+                        })
+                    }
+                </ol>
+            </div>
         );
     };
 }
 
 class AddOption extends React.Component {
-    adicionarOpcao() {
-        console.log('blsah');
-    }
+    onSubmitForm(e) {
+        e.preventDefault();
 
+        const opcao = e.target.elements.opcao.value.trim();
+        if (opcao) {
+            alert(opcao);
+        }
+    }
+    
     render() {
-        return <button onClick={this.adicionarOpcao}>Adicionar opção</button>;
+        return (
+            <form onSubmit={this.onSubmitForm}>
+                <input type="text" name="opcao" />
+                <button>Adicionar opção</button>
+            </form>
+        );
     }
 }
 
