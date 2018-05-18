@@ -49,8 +49,13 @@ class Option extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.removerOpcoes = this.removerOpcoes.bind(this); // mantém referência do método 'removerOpcoes() para o this'
+    }
+    
     removerOpcoes() {
-        alert('Remover opções');
+        console.log(this.props);
     }
 
     render() {
