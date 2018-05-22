@@ -4,24 +4,40 @@ class Counter extends React.Component {
         this.adicionarUm = this.adicionarUm.bind(this);
         this.removerUm = this.removerUm.bind(this);
         this.zerar = this.zerar.bind(this);
+
+        this.state = {
+            contador: 0,
+        }
     }
 
     adicionarUm() {
-        console.log(this.props, 'adicionarUm()');
+        this.setState((estadoAnterior) => {
+            return {
+                contador: estadoAnterior.contador + 1
+            };
+        });
     }
 
     removerUm() {
-        console.log(this.props, 'removerUm()');
+        this.setState((estadoAnterior) => {
+            return {
+                contador: estadoAnterior.contador - 1
+            };
+        });
     }
 
     zerar() {
-        console.log(this.props, 'zerar()');
+        this.setState((estadoAnterior) => {
+            return {
+                contador: 0
+            };
+        });
     }
 
     render() {
         return (
             <div>
-                <h1>Contador: </h1>
+                <h1>Contador: {this.state.contador}</h1>
                 <button onClick={this.adicionarUm}>+1</button>
                 <button onClick={this.removerUm}>-1</button>
                 <button onClick={this.zerar}>Zerar</button>
