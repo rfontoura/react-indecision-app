@@ -1,28 +1,33 @@
-let detalheVisivel = false;
+class Visibilidade extends React.Component {
+    constructor(props) {
+        super(props);
+        this.alternarVisibilidade = this.alternarVisibilidade.bind(this);
+        this.state = {
+            visivel: false
+        }
+    }
 
-const exibirOuOcultarDetalhes = () => {
-    detalheVisivel = !detalheVisivel;
-    render();
-};
+    alternarVisibilidade() {
+        this.setState((estadoAnterior) => {
+            return {
+                visivel: !estadoAnterior.visivel
+            };
+        });
+    }
 
-const domElement = document.getElementById('app');
-
-const render = () => {
-    let conteudo;
-
-    const template = (
-        <div>
-            <h1>Brincando com Visibilidade</h1>
+    render() {
+        return (
             <div>
-                <button onClick={exibirOuOcultarDetalhes}>
-                    {detalheVisivel ? 'Ocultar Detalhes' : 'Exibir Detalhes'}
-                </button>
-                {detalheVisivel && (<p>Detalhes sendo exibidos...</p>)}
+                <h1>Brincando com Visibilidade</h1>
+                <div>
+                    <button onClick={this.alternarVisibilidade}>
+                        {this.state.visivel ? 'Ocultar Detalhes' : 'Exibir Detalhes'}
+                    </button>
+                    {this.state.visivel && (<p>Detalhes sendo exibidos...</p>)}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+}
 
-    ReactDOM.render(template, domElement);
-};
-
-render();
+ReactDOM.render(<Visibilidade />, document.getElementById('app'));
