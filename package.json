@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Aplicação simples React",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -12,7 +13,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d public/scripts --watch",
-    "build2" : "babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --watch"
+    "build2": "babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --watch",
+    "run-live-server": "live-server public/"
   },
   "repository": "git+https://github.com/rfontoura/react-indecision-app.git",
   "keywords": [

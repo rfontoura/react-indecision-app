@@ -4,6 +4,7 @@ class Counter extends React.Component {
         this.adicionarUm = this.adicionarUm.bind(this);
         this.removerUm = this.removerUm.bind(this);
         this.zerar = this.zerar.bind(this);
+        this.elevarAoQuadrado = this.elevarAoQuadrado.bind(this);
 
         this.state = {
             contador: 0,
@@ -26,6 +27,14 @@ class Counter extends React.Component {
         });
     }
 
+    elevarAoQuadrado() {
+        this.setState((prevState) => {
+            return {
+                contador: prevState.contador * prevState.contador
+            };
+        });
+    }
+
     zerar() {
         this.setState((estadoAnterior) => {
             return {
@@ -40,6 +49,7 @@ class Counter extends React.Component {
                 <h1>Contador: {this.state.contador}</h1>
                 <button onClick={this.adicionarUm}>+1</button>
                 <button onClick={this.removerUm}>-1</button>
+                <button onClick={this.elevarAoQuadrado}>^2</button>
                 <button onClick={this.zerar}>Zerar</button>
             </div>
         );
