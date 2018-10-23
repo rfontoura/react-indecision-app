@@ -3,7 +3,7 @@ class IndecisionApp extends React.Component {
         super(props);
         this.executarAcao = this.executarAcao.bind(this);
         this.removerOpcoes = this.removerOpcoes.bind(this);
-        this.adicionarOpcao = this.adicionarOpcao.bind(this);
+        this.onAdicionarOpcao = this.onAdicionarOpcao.bind(this);
         this.state = {
             opcoes : ['Opção 1', 'Opção dois', 'Opção IV']
         };
@@ -18,7 +18,7 @@ class IndecisionApp extends React.Component {
                 <Header title={titulo} subtitle={subtitulo} />
                 <Action onExecutarAcao={this.executarAcao} habilitar={this.state.opcoes.length > 0} />
                 <Options values={this.state.opcoes} onRemoverOpcoes={this.removerOpcoes} />
-                <AddOption onAdicionarOpcao={this.adicionarOpcao} />
+                <AddOption onAdicionarOpcao={this.onAdicionarOpcao} />
             </div>
         );
     }
@@ -29,22 +29,14 @@ class IndecisionApp extends React.Component {
         alert(opcao);
     }
 
-    adicionarOpcao(e) {
-        e.preventDefault();
-        const elementoOpcao = e.target.elements.opcao;
-        const opcao = elementoOpcao.value.trim();
-
-        if (opcao) {
-            this.setState((estadoAtual) => {
-                let novasOpcoes = estadoAtual.opcoes;
-                novasOpcoes.push(opcao);
-                return {
-                    opcoes: novasOpcoes
-                };
-            });
-        }
-        elementoOpcao.value = '';
-        elementoOpcao.focus();
+    onAdicionarOpcao(opcao) {
+        this.setState((estadoAtual) => {
+            let novasOpcoes = estadoAtual.opcoes;
+            novasOpcoes.push(opcao);
+            return {
+                opcoes: novasOpcoes
+            };
+        });
     }
 
     removerOpcoes() {
@@ -68,6 +60,10 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
@@ -106,11 +102,26 @@ class Options extends React.Component {
 }
 
 class AddOption extends React.Component {
-    
+    constructor(props) {
+        super(props);
+        this.adicionar = this.adicionar.bind(this);
+    }
+
+    adicionar(e) {
+        e.preventDefault();
+        const elementoOpcao = e.target.elements.opcao;
+        const opcao = elementoOpcao.value.trim();
+
+        if (opcao) {
+            this.props.onAdicionarOpcao(opcao);
+        }
+        elementoOpcao.value = '';
+        elementoOpcao.focus();
+    }
     
     render() {
         return (
-            <form onSubmit={this.props.onAdicionarOpcao}>
+            <form onSubmit={this.adicionar}>
                 <input type="text" name="opcao" />
                 <button>Adicionar opção</button>
             </form>
