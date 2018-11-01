@@ -2,6 +2,7 @@ class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.executarAcao = this.executarAcao.bind(this);
+        this.removerOpcao = this.removerOpcao.bind(this);
         this.removerOpcoes = this.removerOpcoes.bind(this);
         this.onAdicionarOpcao = this.onAdicionarOpcao.bind(this);
         this.state = {
@@ -17,7 +18,7 @@ class IndecisionApp extends React.Component {
             <div>
                 <Header title={titulo} subtitle={subtitulo} />
                 <Action onExecutarAcao={this.executarAcao} habilitar={this.state.opcoes.length > 0} />
-                <Options values={this.state.opcoes} onRemoverOpcoes={this.removerOpcoes} />
+                <Options values={this.state.opcoes} onRemoverOpcoes={this.removerOpcoes} onRemoverOpcao={this.removerOpcao} />
                 <AddOption onAdicionarOpcao={this.onAdicionarOpcao} />
             </div>
         );
@@ -36,23 +37,25 @@ class IndecisionApp extends React.Component {
             return 'Este valor já está na lista, jumento!'
         }
 
-        // this.setState((estadoAtual) => {
-        //     return {
-        //         opcoes: estadoAtual.opcoes.concat([opcao])
-        //     };
-        // });
-
-        this.setState((estadoAtual) => ({opcoes: estadoAtual.opcoes.concat([opcao])}));
+        this.setState((estadoAtual) => ({ opcoes: estadoAtual.opcoes.concat([opcao]) }));
     }
 
     removerOpcoes() {
-        // this.setState(() => {
-        //     return {
-        //         opcoes: []
-        //     };
-        // });
+        this.setState(() => ({ opcoes: [] }));
+    }
 
-        this.setState(() => ({opcoes: []}));
+    removerOpcao(opcaoARemover) {
+        const msg = "Confirma a remoção da opção \"" + opcaoARemover + "\"?";
+
+        if (confirm(msg)) {
+            this.setState((estado) => {
+                return {
+                    opcoes: estado.opcoes.filter((opcao) => {
+                        return opcao !== opcaoARemover;
+                    })
+                };
+            });
+        }
     }
 }
 
@@ -64,17 +67,6 @@ const Header = (props) => {
         </div>
     );
 };
-
-// class Header extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 <h1>{this.props.title}</h1>
-//                 <h2>{this.props.subtitle}</h2>
-//             </div>
-//         );
-//     }
-// }
 
 class Action extends React.Component {
     constructor(props) {
@@ -91,8 +83,26 @@ class Action extends React.Component {
 }
 
 class Option extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
-        return <li key>{this.props.value}</li>;
+        const label = "Remover elemento \"" + this.props.value + "\"";
+        const estilo = { cursor: 'pointer' };
+
+        return (<li key>{this.props.value}&nbsp;
+            <a onClick={(e) => { this.props.onRemoverOpcao(this.props.optionText) }}>
+                <img src="https://image.flaticon.com/icons/png/128/70/70388.png"
+                    srcSet="https://image.flaticon.com/icons/png/512/70/70388.png 4x"
+                    alt={label}
+                    title={label}
+                    width="16"
+                    height="16"
+                    style={estilo}
+                    href="#" />
+            </a>
+        </li>);
     }
 }
 
@@ -109,7 +119,7 @@ class Options extends React.Component {
                 <ol>
                     {
                         this.props.values.map((valor, indice) => {
-                            return <Option key={indice} value={valor} />;
+                            return <Option key={indice} value={valor} onRemoverOpcao={this.props.onRemoverOpcao} />;
                         })
                     }
                 </ol>
