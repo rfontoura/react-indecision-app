@@ -5,7 +5,7 @@ class IndecisionApp extends React.Component {
         this.removerOpcoes = this.removerOpcoes.bind(this);
         this.onAdicionarOpcao = this.onAdicionarOpcao.bind(this);
         this.state = {
-            opcoes : ['Opção 1', 'Opção dois', 'Opção IV']
+            opcoes: ['Opção 1', 'Opção dois', 'Opção IV']
         };
     }
 
@@ -30,34 +30,51 @@ class IndecisionApp extends React.Component {
     }
 
     onAdicionarOpcao(opcao) {
-        this.setState((estadoAtual) => {
-            let novasOpcoes = estadoAtual.opcoes;
-            novasOpcoes.push(opcao);
-            return {
-                opcoes: novasOpcoes
-            };
-        });
+        if (!opcao) {
+            return 'Digite algum valor, burro!';
+        } else if (this.state.opcoes.indexOf(opcao) >= 0) {
+            return 'Este valor já está na lista, jumento!'
+        }
+
+        // this.setState((estadoAtual) => {
+        //     return {
+        //         opcoes: estadoAtual.opcoes.concat([opcao])
+        //     };
+        // });
+
+        this.setState((estadoAtual) => ({opcoes: estadoAtual.opcoes.concat([opcao])}));
     }
 
     removerOpcoes() {
-        this.setState(() => {
-            return {
-                opcoes: []
-            };
-        });
+        // this.setState(() => {
+        //     return {
+        //         opcoes: []
+        //     };
+        // });
+
+        this.setState(() => ({opcoes: []}));
     }
 }
 
-class Header extends React.Component {
-    render() {
-        return (
-            <div>
-            <h1>{this.props.title}</h1>
-            <h2>{this.props.subtitle}</h2>
-            </div>
-        );
-    }
-}
+const Header = (props) => {
+    return (
+        <div>
+            <h1>{props.title}</h1>
+            <h2>{props.subtitle}</h2>
+        </div>
+    );
+};
+
+// class Header extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h1>{this.props.title}</h1>
+//                 <h2>{this.props.subtitle}</h2>
+//             </div>
+//         );
+//     }
+// }
 
 class Action extends React.Component {
     constructor(props) {
@@ -105,26 +122,35 @@ class AddOption extends React.Component {
     constructor(props) {
         super(props);
         this.adicionar = this.adicionar.bind(this);
+        this.state = {
+            error: undefined
+        };
     }
 
     adicionar(e) {
         e.preventDefault();
         const elementoOpcao = e.target.elements.opcao;
         const opcao = elementoOpcao.value.trim();
+        const erro = this.props.onAdicionarOpcao(opcao);
+        this.setState(() => {
+            return {
+                error: erro
+            };
+        });
 
-        if (opcao) {
-            this.props.onAdicionarOpcao(opcao);
-        }
         elementoOpcao.value = '';
         elementoOpcao.focus();
     }
-    
+
     render() {
         return (
-            <form onSubmit={this.adicionar}>
-                <input type="text" name="opcao" />
-                <button>Adicionar opção</button>
-            </form>
+            <div>
+                {this.state.error && <p>{this.state.error}</p>}
+                <form onSubmit={this.adicionar}>
+                    <input type="text" name="opcao" />
+                    <button>Adicionar opção</button>
+                </form>
+            </div>
         );
     }
 }

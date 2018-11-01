@@ -7,7 +7,7 @@ class Counter extends React.Component {
         this.elevarAoQuadrado = this.elevarAoQuadrado.bind(this);
 
         this.state = {
-            contador: 0,
+            contador: props.contador,
         }
     }
 
@@ -56,4 +56,8 @@ class Counter extends React.Component {
     }
 }
 
-ReactDOM.render(<Counter test="a" test2="b"/>, document.getElementById('app'));
+Counter.defaultProps = {
+    contador: 88
+};
+
+ReactDOM.render(<Counter contador={-15} />, document.getElementById('app'));
