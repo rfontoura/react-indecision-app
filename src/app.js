@@ -10,6 +10,10 @@ class IndecisionApp extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log('componentDidMount()');
+    }
+
     render() {
         const titulo = 'Indecisão';
         const subtitulo = 'Coloque sua vida nas mãos de um computador';
@@ -27,7 +31,6 @@ class IndecisionApp extends React.Component {
     executarAcao() {
         const indice = Math.floor(Math.random() * this.state.opcoes.length);
         const opcao = this.state.opcoes[indice];
-        alert(opcao);
     }
 
     onAdicionarOpcao(opcao) {
@@ -87,12 +90,16 @@ class Option extends React.Component {
         super(props);
     }
 
+    componentWillUnmount() {
+        console.log('componentWillUnmount()');
+    }
+
     render() {
         const label = "Remover elemento \"" + this.props.value + "\"";
         const estilo = { cursor: 'pointer' };
 
         return (<li key>{this.props.value}&nbsp;
-            <a onClick={(e) => { this.props.onRemoverOpcao(this.props.optionText) }}>
+            <a onClick={(e) => { this.props.onRemoverOpcao(this.props.value) }}>
                 <img src="https://image.flaticon.com/icons/png/128/70/70388.png"
                     srcSet="https://image.flaticon.com/icons/png/512/70/70388.png 4x"
                     alt={label}
