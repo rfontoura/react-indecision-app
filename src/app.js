@@ -6,12 +6,22 @@ class IndecisionApp extends React.Component {
         this.removerOpcoes = this.removerOpcoes.bind(this);
         this.onAdicionarOpcao = this.onAdicionarOpcao.bind(this);
         this.state = {
-            opcoes: ['Opção 1', 'Opção dois', 'Opção IV']
+            opcoes: []
         };
     }
 
     componentDidMount() {
-        console.log('componentDidMount()');
+        const str = localStorage.getItem('opcoes');
+        const json = JSON.parse(str);
+        this.setState(() => ({ opcoes: json }));
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.opcoes != this.state.opcoes) {
+            console.log('componentDidMount');
+            const json = JSON.stringify(this.state.opcoes);
+            localStorage.setItem('opcoes', json);
+        }
     }
 
     render() {
@@ -123,6 +133,7 @@ class Options extends React.Component {
         return (
             <div>
                 <button onClick={this.props.onRemoverOpcoes}>Remover todos</button>
+                {this.props.values.length === 0 && (<p>Adicione um item, burrão!</p>)}
                 <ol>
                     {
                         this.props.values.map((valor, indice) => {
