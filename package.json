@@ -4,6 +4,7 @@
   "description": "Aplicação simples React",
   "main": "index.js",
   "dependencies": {
+    "live-server": "^1.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
