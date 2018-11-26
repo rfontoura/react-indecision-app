@@ -2,9 +2,18 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/app2.js',
+    entry: './src/app.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
+    },
+    module: {
+        rules: [{
+            // configurando o Babel Loader para rodar em arquivos que terminam .js
+            // e ignorar arquivos que estão em node_modules
+            loader: 'babel-loader',
+            test: /\.js$/,
+            exclude: /node_modules/
+        }]
     }
 };
