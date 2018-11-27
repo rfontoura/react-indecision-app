@@ -6,7 +6,7 @@ export default class Option extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount()');
+        // console.log('componentWillUnmount()');
     }
 
     render() {
