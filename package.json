@@ -14,13 +14,14 @@
     "react-dom": "^16.6.3",
     "validator": "^10.9.0",
     "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch",
-    "build2": "babel src -d public/scripts --watch",
-    "run-live-server": "live-server public/"
+    "dev-server": "webpack-dev-server",
+    "build": "webpack",
+    "serve": "live-server public/"
   },
   "repository": "git+https://github.com/rfontoura/react-indecision-app.git",
   "keywords": [
