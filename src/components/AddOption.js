@@ -1,15 +1,11 @@
 import React from 'react';
 
 export default class AddOption extends React.Component {
-    constructor(props) {
-        super(props);
-        this.adicionar = this.adicionar.bind(this);
-        this.state = {
-            error: undefined
-        };
+    state = {
+        error: undefined
     }
 
-    adicionar(e) {
+    adicionar = (e) => {
         e.preventDefault();
         const elementoOpcao = e.target.elements.opcao;
         const opcao = elementoOpcao.value.trim();
@@ -22,7 +18,7 @@ export default class AddOption extends React.Component {
 
         elementoOpcao.value = '';
         elementoOpcao.focus();
-    }
+    };
 
     render() {
         return (
