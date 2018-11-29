@@ -3,10 +3,12 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
 import Header from './Header';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
     state = {
-        opcoes: []
+        opcoes: [],
+        opcaoSelecionada: undefined
     };
 
     componentDidMount = () => {
@@ -28,7 +30,11 @@ export default class IndecisionApp extends React.Component {
     executarAcao = () => {
         const indice = Math.floor(Math.random() * this.state.opcoes.length);
         const opcao = this.state.opcoes[indice];
-        alert(opcao);
+        this.setState({ opcaoSelecionada: opcao });
+    };
+
+    onFecharJanela = () => {
+        this.setState({ opcaoSelecionada: undefined });
     };
 
     onAdicionarOpcao = (opcao) => {
@@ -70,6 +76,8 @@ export default class IndecisionApp extends React.Component {
                 <Options values={this.state.opcoes}
                     onRemoverOpcoes={this.removerOpcoes}
                     onRemoverOpcao={this.removerOpcao} />
+                <OptionModal opcaoSelecionada={this.state.opcaoSelecionada}
+                    onFecharJanela={this.onFecharJanela} />
                 <AddOption onAdicionarOpcao={this.onAdicionarOpcao} />
             </div>
         );
