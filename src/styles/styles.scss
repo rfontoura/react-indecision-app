@@ -1,5 +1,6 @@
-$brand-color: blue;
+// na importação de arquivos-base retiramos o underscore
+// do nome do arquivo
 
-* {
-    color: $brand-color;
-}
+// nome do arquivo é '_base.css', mas importamos apenas 'base'
+@import './base/base';
+@import './components/header';

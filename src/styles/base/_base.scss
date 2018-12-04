@@ -1,0 +1,14 @@
+// arquivos SCSS base são criados com nome iniciando com underscore,
+// o que indica que são parte de um todo, apenas um pedaço
+
+html {
+    // definindo que a fonte-base é 62,5% do padrão
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    
+    // definindo que a fonte é 1,6x o tamanho da fonte-base do sistema
+    font-size: 1.6rem; 
+}
