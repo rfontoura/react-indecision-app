@@ -1,18 +1,12 @@
 import React from 'react';
 
-export default class Action extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const Action = (props) => (
+    <div>
+        <button onClick={props.onExecutarAcao}
+            disabled={!props.habilitar}>
+            O que devo fazer?
+        </button>
+    </div>
+);
 
-    render() {
-        return (
-            <div>
-                <button onClick={this.props.onExecutarAcao}
-                    disabled={!this.props.habilitar}>
-                    O que devo fazer?
-                </button>
-            </div>
-        );
-    }
-}
+export default Action;
