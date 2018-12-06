@@ -2,5 +2,7 @@
 // do nome do arquivo
 
 // nome do arquivo é '_base.css', mas importamos apenas 'base'
+@import './base/settings';
 @import './base/base';
+@import './components/container';
 @import './components/header';
