@@ -11,7 +11,8 @@ export default class Options extends React.Component {
         return (
             <div>
                 <button onClick={this.props.onRemoverOpcoes}
-                    disabled={this.props.values.length == 0}>
+                    disabled={this.props.values.length == 0}
+                    className="button button--link">
                     Remover todos
                 </button>
                 {this.props.values.length === 0 && (<p>Adicione um item, burrão!</p>)}
