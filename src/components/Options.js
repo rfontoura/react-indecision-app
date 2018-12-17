@@ -10,12 +10,15 @@ export default class Options extends React.Component {
 
         return (
             <div>
-                <button onClick={this.props.onRemoverOpcoes}
-                    disabled={this.props.values.length == 0}
-                    className="button button--link">
-                    Remover todos
-                </button>
-                {this.props.values.length === 0 && (<p>Adicione um item, burrão!</p>)}
+                <div className="widget-header">
+                    <h3 className="widget-header__title">Suas opções</h3>
+                    <button onClick={this.props.onRemoverOpcoes}
+                        disabled={this.props.values.length == 0}
+                        className="button button--link">
+                        Remover todos
+                    </button>
+                </div>
+                {this.props.values.length === 0 && (<p class="widget__message">Adicione um item, burrão!</p>)}
                 <ol>
                     {
                         this.props.values.map((valor, indice) => {

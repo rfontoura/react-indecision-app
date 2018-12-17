@@ -74,10 +74,12 @@ export default class IndecisionApp extends React.Component {
                 <Header title={titulo} subtitle={subtitulo} />
                 <div className="container">
                     <Action onExecutarAcao={this.executarAcao} habilitar={this.state.opcoes.length > 0} />
-                    <Options values={this.state.opcoes}
-                        onRemoverOpcoes={this.removerOpcoes}
-                        onRemoverOpcao={this.removerOpcao} />
-                    <AddOption onAdicionarOpcao={this.onAdicionarOpcao} />
+                    <div className="widget">
+                        <Options values={this.state.opcoes}
+                            onRemoverOpcoes={this.removerOpcoes}
+                            onRemoverOpcao={this.removerOpcao} />
+                        <AddOption onAdicionarOpcao={this.onAdicionarOpcao} />
+                    </div>
                 </div>
                 <OptionModal opcaoSelecionada={this.state.opcaoSelecionada}
                     onFecharJanela={this.onFecharJanela} />
