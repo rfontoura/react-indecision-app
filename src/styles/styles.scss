@@ -4,7 +4,9 @@
 // nome do arquivo é '_base.css', mas importamos apenas 'base'
 @import './base/settings';
 @import './base/base';
+@import './components/add-option';
 @import './components/container';
 @import './components/buttons';
 @import './components/header';
+@import './components/option';
 @import './components/widget';

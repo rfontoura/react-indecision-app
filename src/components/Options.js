@@ -18,14 +18,16 @@ export default class Options extends React.Component {
                         Remover todos
                     </button>
                 </div>
-                {this.props.values.length === 0 && (<p class="widget__message">Adicione um item, burrão!</p>)}
-                <ol>
-                    {
-                        this.props.values.map((valor, indice) => {
-                            return <Option key={indice} value={valor} onRemoverOpcao={this.props.onRemoverOpcao} />;
-                        })
-                    }
-                </ol>
+                {this.props.values.length === 0 && (<p className="widget__message">Adicione um item, burrão!</p>)}
+                {
+                    this.props.values.map((valor, indice) => {
+                        return <Option
+                            key={valor}
+                            value={valor}
+                            contagem={indice + 1}
+                            onRemoverOpcao={this.props.onRemoverOpcao} />;
+                    })
+                }
             </div>
         );
     };
